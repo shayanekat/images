@@ -36,7 +36,6 @@ def resize():
     dy = np.linspace(0, z.shape[1]-1, z.shape[1]-y)
     
     # remove the lines and columns
-    print(z.shape)
     for i in dx[-1::-1]:
         z = np.delete(z, int(i), 0)
     for i in dy[-1::-1]:
