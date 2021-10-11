@@ -4,8 +4,8 @@
     test script for managing light
 """
 
-from PIL import Image
 from tkinter import *
+from PIL import Image
 import numpy as np
 
 # %% BACKEND
@@ -22,9 +22,19 @@ def light():
     lum = int(s.get())
     
     # compute new values
-    z = (z*lum)//50
+    for i in range(z.shape[0]):
+        for j in range(z.shape[1]):
+            for k in range(z.shape[2]):
+                nv = (z[i, j, k]*lum)//50
+                if nv <= 255:
+                    z[i, j, k] = nv
+                else:
+                    z[i, j, k] = 255
     
     # create new image
+    New = np.array(z, dtype=np.uint8)
+    img = Image.fromarray(New)
+    img.save("processed_images\\lighter.png")
 
 # %% FRONTEND
 root = Tk()
@@ -36,7 +46,7 @@ l.pack(padx=5, pady=5)
 s = Scale(root, from_=0, to=100, orient=HORIZONTAL)
 s.pack(padx=5, pady=5)
 
-b = Button(root, text="change lighting")
+b = Button(root, text="change lighting", command=light)
 b.pack(padx=5, pady=5)
 
 root.mainloop()
