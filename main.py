@@ -49,7 +49,12 @@ s3.grid(row=3, column=1, padx=5, pady=5)
 
 # row 4 : lighting checkbox
 c4 = Checkbutton(root,text="allow lighting")
-c4.grid(row=2, column=1, padx=5, pady=5)
+c4.grid(row=4, column=1, padx=5, pady=5)
+
+
+# row 5 : button
+b5 = Button(root, text="process image")
+b5.grid(row=5, column=1, padx=5, pady=5)
 
 
 root.mainloop()
