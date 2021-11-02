@@ -33,8 +33,23 @@ l1.grid(row=1, column=0, padx=5, pady=5)
 e1 = Entry(root)
 e1.grid(row=1, column=1, padx=5, pady=5)
 
-c1 = Checkbutton(root,text="allow resizing")
 
+# row 2 : resizing checkbox
+c2 = Checkbutton(root,text="allow resizing")
+c2.grid(row=2, column=1, padx=5, pady=5)
+
+
+# row 3 : lighting
+l3 = Label(root, text="slider to select lighting percentage")
+l3.grid(row=3, column=0, padx=5, pady=5)
+
+s3 = Scale(root, from_=0, to=100, orient=HORIZONTAL)
+s3.grid(row=3, column=1, padx=5, pady=5)
+
+
+# row 4 : lighting checkbox
+c4 = Checkbutton(root,text="allow lighting")
+c4.grid(row=2, column=1, padx=5, pady=5)
 
 
 root.mainloop()
