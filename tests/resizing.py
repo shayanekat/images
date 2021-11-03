@@ -15,7 +15,7 @@ def resize():
         Function to resize an image
     """
     # creation de la matrice
-    img = Image.open("tests\\input.png")
+    img = Image.open(e01)
     z = np.array(img)
     
     # extract new size from input
