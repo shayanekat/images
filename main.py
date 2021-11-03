@@ -8,6 +8,7 @@ from tkinter import *
 from tkinter import filedialog
 from PIL import Image
 import numpy as np
+from numpy.core.fromnumeric import var
 
 # %% BACKEND
 # define variables
@@ -15,16 +16,31 @@ z = []
 
 # functions
 def main():
+    """
+    main function
+    """
+    global z
     
     # creation de la matrice
     img = Image.open("tests\\input.png")
     z = np.array(img)
     
-
+    if bool(var2.get()):
+        resize()
+    
+    if bool(var4.get()):
+        light()
+    
+    New = np.array(z, dtype=np.uint8)
+    img = Image.fromarray(New)
+    img.save("processed_images\\processed.png")
+    
 def resize():
     """
         Function to resize an image
     """
+    global z
+    
     # extract new size from input
     try:
         x, y = str(e1.get()).split("x")
@@ -52,8 +68,10 @@ def light():
     """
         main function for light managing
     """
+    global z
+    
     # extract light percentage
-    lum = int(s.get())
+    lum = int(s3.get())
     
     # compute new values
     for i in range(z.shape[0]):
@@ -89,7 +107,8 @@ e1.grid(row=1, column=1, padx=5, pady=5)
 
 
 # row 2 : resizing checkbox
-c2 = Checkbutton(root,text="allow resizing")
+var2 = IntVar()
+c2 = Checkbutton(root, text="allow resizing", variable=var2)
 c2.grid(row=2, column=1, padx=5, pady=5)
 
 
@@ -102,12 +121,13 @@ s3.grid(row=3, column=1, padx=5, pady=5)
 
 
 # row 4 : lighting checkbox
-c4 = Checkbutton(root,text="allow lighting")
+var4 = IntVar()
+c4 = Checkbutton(root, text="allow lighting", variable=var4)
 c4.grid(row=4, column=1, padx=5, pady=5)
 
 
 # row 5 : button
-b5 = Button(root, text="process image")
+b5 = Button(root, text="process image", command=main)
 b5.grid(row=5, column=1, padx=5, pady=5)
 
 
