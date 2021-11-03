@@ -46,6 +46,7 @@ def resize():
     img = Image.fromarray(New)
     img.save("processed_images\\resized.png")
 
+
 # %% FRONTEND
 root = Tk()
 root.title("resize image")

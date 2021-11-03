@@ -10,8 +10,60 @@ from PIL import Image
 import numpy as np
 
 # %% BACKEND
-# functions
+# define variables
+z = []
 
+# functions
+def main():
+    
+    # creation de la matrice
+    img = Image.open("tests\\input.png")
+    z = np.array(img)
+    
+
+def resize():
+    """
+        Function to resize an image
+    """
+    # extract new size from input
+    try:
+        x, y = str(e1.get()).split("x")
+        x, y = int(x), int(y)
+        
+        if x > z.shape[0] and y > z.shape[1]: # too high size case
+            print("Enter size that is less than 512x512")
+            return 0
+        
+    except ValueError: # not number case
+        print("Enter two numbers by format 512x512")
+        return 0
+    
+    # compute lines and column to remove
+    dx = np.linspace(0, z.shape[0]-1, z.shape[0]-x)
+    dy = np.linspace(0, z.shape[1]-1, z.shape[1]-y)
+    
+    # remove the lines and columns
+    for i in dx[-1::-1]:
+        z = np.delete(z, int(i), 0)
+    for i in dy[-1::-1]:
+        z = np.delete(z, int(i), 1)
+
+def light():
+    """
+        main function for light managing
+    """
+    # extract light percentage
+    lum = int(s.get())
+    
+    # compute new values
+    for i in range(z.shape[0]):
+        for j in range(z.shape[1]):
+            for k in range(z.shape[2]):
+                nv = (z[i, j, k]*lum)//50
+                if nv <= 255:
+                    z[i, j, k] = nv
+                else:
+                    z[i, j, k] = 255
 
 # %% FRONTEND
 root = Tk()
