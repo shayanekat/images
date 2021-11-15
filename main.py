@@ -10,6 +10,9 @@ from PIL import Image
 import numpy as np
 from numpy.core.fromnumeric import var
 
+# TODO (15/11/2021): 
+# - ajouter des filtres (convolution, canal r/g/b, mirroir, negatif...)
+
 # %% BACKEND
 # define variables
 z = []
