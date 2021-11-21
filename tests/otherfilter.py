@@ -77,7 +77,19 @@ def negative2():
     nz = -z + 255
     display(nz)
     
+def mirrorH():
+    nz = np.flip(z, axis=1)
+    display(nz)
 
+def mirrorV():
+    nz = np.flip(z, axis=0)
+    display(nz)
+
+def mirror():
+    nz = np.flip(z, axis=0)
+    nz = np.flip(nz, axis=1)
+    display(nz)
+    
 # %% FRONTEND
 # configuration
 root = Tk()
@@ -111,13 +123,13 @@ bn2 = Button(root, text="negative v2", command=negative2)
 bn2.grid(row=2, column=1, padx=5, pady=5)
 
 # fourth row : mirror
-bmh = Button(root, text="horizontal mirror")
+bmh = Button(root, text="horizontal mirror", command=mirrorH)
 bmh.grid(row=3, column=0, padx=5, pady=5)
 
-bmv = Button(root, text="vertical mirror")
+bmv = Button(root, text="vertical mirror", command=mirrorV)
 bmv.grid(row=3, column=1, padx=5, pady=5)
 
-bm = Button(root, text="mirror")
+bm = Button(root, text="mirror", command=mirror)
 bm.grid(row=3, column=2, padx=5, pady=5)
 
 # mainloop
